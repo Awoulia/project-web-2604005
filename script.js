@@ -1,4 +1,5 @@
-console.log("JavaScript Pertemuan 6 aktif");
+console.log("JavaScript Pertemuan 7 aktif");
+
 const eventName = "TechStarter Day";
 const maxSeats = 40;
 let registered = 27;
@@ -32,11 +33,44 @@ function registerSeats(requested) {
   return `Berhasil. Total terdaftar sekarang ${registered}`;
 }
 
-const checkSeatBtn = document.querySelector("#checkSeatBtn");
+const seatForm = document.querySelector("#seatForm");
+const seatRequestInput = document.querySelector("#seatRequest");
+const seatMessage = document.querySelector("#seatMessage");
 
-checkSeatBtn.addEventListener("click", function () {
-  const requested = Number(prompt("Berapa kursi yang ingin dicek?"));
-  const result = checkSeats(requested);
-  console.log(result);
-  alert(result);
-});
+console.log(seatForm);
+console.log(seatRequestInput);
+console.log(seatMessage);
+
+//const wrongTarget = document.querySelector("#seatMessage");
+//console.log(wrongTarget);
+//wrongTarget.textContent = "Test";
+
+seatForm.addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const requested = Number(seatRequestInput.value);
+  const remaining = maxSeats - registered;
+
+  if (!Number.isInteger(requested) || requested <= 0) {
+    setStatus("Masukkan jumlah kursi bulat lebih dari 0.", "error");
+    return;
+  }
+
+  if (requested <= remaining) {
+    setStatus(`Tersedia. Masih ada ${remaining} kursi.`, "success");
+  } else {
+    setStatus(`Tidak cukup. Sisa kursi hanya ${remaining}.`, "error");
+  }
+  });
+
+  seatRequestInput.addEventListener("input", function () {
+    setStatus("Nilai berubah. Tekan cek kursi untuk memeriksa.", "neutral");
+  });
+
+
+function setStatus(message, type) {
+  seatMessage.textContent = message;
+  seatMessage.classList.remove("neutral", "success", "error");
+  seatMessage.classList.add(type);
+}
+

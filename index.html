@@ -65,11 +65,26 @@
                 <li>Menyimpan perkembangan project dengan Git.</li>
             </ul>
         </section>
-        <section id="pendaftaran" class="container">
-            <h2>Informasi Pendaftaran TechStarter Day</h2>
-            <p>Silahkan periksa ketersediaan kursi sebelum melakukan pendaftaran</p>
+    
+        <section id="registration" class="registration-card" aria-labelledby="registrationTitle">
+            <h2 id="registrationTitle">Cek Ketersediaan Kursi</h2>
 
-            <button id="checkSeatBtn" type="button">Cek Sisa Kursi</button>
+            <form id="seatForm">
+                <label for="seatRequest">Jumlah kursi yang dibutuhkan</label>
+                <input 
+                id="seatRequest"
+                name="seatRequest"
+                type="number"
+                min="1"
+                step="1"
+                required
+                >
+                <button type="submit">Cek Kursi</button>
+            </form>
+
+            <p id="seatMessage" class="status neutral" aria-live="polite">
+                Masukkan jumlah kursi lalu tekan Cek Kursi.
+            </p>
         </section>
     </main>
 
